@@ -58,9 +58,10 @@
       }
 
       if (method === 'get' || method === 'delete' || hasParams) {
-        config.params = Object.assign({}, params, {
+        config.params = {
+          ...params,
           key,
-        });
+        };
       }
 
       if (
@@ -69,9 +70,10 @@
         method === 'patch' ||
         hasBody
       ) {
-        config.data = Object.assign({}, data, {
+        config.data = {
+          ...data,
           key,
-        });
+        };
       }
 
       return config
