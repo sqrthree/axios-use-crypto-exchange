@@ -5,7 +5,9 @@
   "main": "dist/index.umd.js",
   "module": "index.js",
   "scripts": {
-    "build": "rollup index.js --file dist/index.umd.js --format umd --name 'useCryptoExchange'"
+    "build": "rollup index.js --file dist/index.umd.js --format umd --name 'useCryptoExchange'",
+    "test": "ava",
+    "test:cov": "nyc ava"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,12 @@
   },
   "homepage": "https://github.com/sqrthree/axios-use-crypto-exchange#readme",
   "devDependencies": {
+    "ava": "~3.15.0",
+    "axios": "~0.21.1",
+    "nyc": "~15.1.0",
     "rollup": "~2.53.2"
+  },
+  "dependencies": {
+    "node-forge": "~0.10.0"
   }
 }

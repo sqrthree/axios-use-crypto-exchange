@@ -16,14 +16,28 @@ let key = ''
  *
  * @param {Object} options
  * @param {() => Promise<string>} options.getServerPublicKey
+ * @param {(str: string) => Promise<void>} options.sendEncryptedSecret
  * @param {string} options.secret
  *
  * @returns
  */
-export default function useCryptoExchange(options) {
+export default function useCryptoExchange(options = {}) {
+  const { getServerPublicKey, sendEncryptedSecret, secret } = options
+
+  if (!getServerPublicKey) {
+    throw Error('getServerPublicKey is required.')
+  }
+
+  if (!sendEncryptedSecret) {
+    throw Error('sendEncryptedSecret is required.')
+  }
+
+  if (!secret) {
+    throw Error('secret is required.')
+  }
+
   return async function interceptor(config) {
     const { method, params, data } = config
-    const { getServerPublicKey, secret } = options
 
     const hasParams = params && Object.keys(params).length > 0
     const hasBody = data && Object.keys(data).length > 0
@@ -32,7 +46,7 @@ export default function useCryptoExchange(options) {
       const serverPublicKey = await getServerPublicKey()
       const encryptedSecret = publicEncrypt(serverPublicKey, secret)
 
-      key = await options.sendEncryptedSecret(encryptedSecret)
+      key = await sendEncryptedSecret(encryptedSecret)
     }
 
     if (method === 'get' || method === 'delete' || hasParams) {
