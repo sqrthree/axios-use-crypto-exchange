@@ -50,9 +50,10 @@ export default function useCryptoExchange(options = {}) {
     }
 
     if (method === 'get' || method === 'delete' || hasParams) {
-      config.params = Object.assign({}, params, {
+      config.params = {
+        ...params,
         key,
-      })
+      }
     }
 
     if (
@@ -61,9 +62,10 @@ export default function useCryptoExchange(options = {}) {
       method === 'patch' ||
       hasBody
     ) {
-      config.data = Object.assign({}, data, {
+      config.data = {
+        ...data,
         key,
-      })
+      }
     }
 
     return config
