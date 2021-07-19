@@ -19,7 +19,7 @@ let key = ''
  * @param {(str: string) => Promise<void>} options.sendEncryptedSecret
  * @param {string} options.secret
  *
- * @returns
+ * @returns interceptor
  */
 export default function useCryptoExchange(options = {}) {
   const { getServerPublicKey, sendEncryptedSecret, secret } = options

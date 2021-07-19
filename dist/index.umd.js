@@ -27,7 +27,7 @@
    * @param {(str: string) => Promise<void>} options.sendEncryptedSecret
    * @param {string} options.secret
    *
-   * @returns
+   * @returns interceptor
    */
   function useCryptoExchange(options = {}) {
     const { getServerPublicKey, sendEncryptedSecret, secret } = options;
