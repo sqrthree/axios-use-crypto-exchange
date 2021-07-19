@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('node-forge')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'node-forge'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.useCryptoExchange = {}, global.forge));
-}(this, (function (exports, forge) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('node-forge')) :
+  typeof define === 'function' && define.amd ? define(['node-forge'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.useCryptoExchange = factory(global.forge));
+}(this, (function (forge) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -64,8 +64,6 @@
     }
   }
 
-  exports.useCryptoExchange = useCryptoExchange;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
+  return useCryptoExchange;
 
 })));

@@ -20,7 +20,7 @@ let key = ''
  *
  * @returns
  */
-export function useCryptoExchange(options) {
+export default function useCryptoExchange(options) {
   return async function interceptor(config) {
     const { method, params, data } = config
     const { getServerPublicKey, secret } = options
